@@ -1,0 +1,19 @@
+<div [formGroup]="todoGroup">
+    <input type="checkbox" formControlName="progressStatus">
+    <input type="text" formControlName="title">
+    <input type="text" formControlName="description">
+    <button type="button" (click)="onSubmit(todoGroup)">Submit</button>
+</div>
+
+<div [formGroup]="todoGroup">
+    <div formArrayName="aliases">
+        <div *ngFor="let alias of aliases.controls; let index = index">
+            <label>
+                <input type="checkbox" formControlName="progressStatus">
+                <input type="text" formControlName="title">
+                <input type="text" formControlName="description">
+            </label>
+        </div>
+    </div>
+</div>
+

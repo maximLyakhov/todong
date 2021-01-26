@@ -1,34 +1,33 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { TodoService } from '../todo.service';
-// import { FormArray } from "@angular/forms";
 
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
   styleUrls: ['./todo-form.component.scss']
 })
-export class TodoFormComponent {
+export class TodoFormComponent implements OnInit{
   
   todoForm = this.fb.group({
-    title: ['', Validators.minLength(3)],
+    title: ['', [Validators.required, Validators.minLength(3)]],
     description: [''],
-  })
+  },
+  {updateOn: 'submit'}
+  )
 
-  constructor(private fb: FormBuilder, private todoService: TodoService) { }
+  constructor(private fb: FormBuilder, private todoService: TodoService) {}
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.todoForm.valueChanges.subscribe(r => {
+      console.log( this.todoForm);
+    })
   }
-  
-  onSubmit (form) {
-    this.todoService.pushTodo(form.value)
-    form.reset()
+
+  onSubmit(form: FormGroup) {
+    if (this.todoForm.valid) {
+      this.todoService.pushTodo(form.value)
+      form.reset()
+    }
   }
-  // get aliases() {
-  //   return this.todoForm.get('aliases') as FormArray;
-  // }
-  
-  // addAlias() {
-  //   this.aliases.push(this.fb.control(''));
-  // }
 }

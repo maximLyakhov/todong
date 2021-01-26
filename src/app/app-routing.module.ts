@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EmptyDescGuard } from './empty-desc.guard';
+import { TodoDetailComponent } from './todo-detail/todo-detail.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
-import { TodoOneComponent } from './todo-one/todo-one.component';
 
 const routes: Routes = [
   {
@@ -9,8 +10,9 @@ const routes: Routes = [
   component: TodoListComponent
   },
   {
-  path: 'detail/:date', 
-  component: TodoOneComponent,
+  path: 'detail/:date',
+  canActivate:[EmptyDescGuard],
+  component: TodoDetailComponent,
   },
   { 
   path: '',

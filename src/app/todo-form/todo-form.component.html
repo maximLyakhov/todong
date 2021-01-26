@@ -1,11 +1,18 @@
-<form  [formGroup]="todoForm" (ngSubmit)="onSubmit(this.todoForm)">
+<form  [formGroup]="todoForm" #form="ngForm" (ngSubmit)="onSubmit(todoForm)">
     <label>Title:</label>
     <input type="text" formControlName="title" minlength="3" required>
+    <div  class="error" *ngIf="todoForm.get('title').hasError('required') && form.submitted">
+        Title field is required!
+    </div>
+    <div class="error" *ngIf="todoForm.get('title').hasError('minlength') && form.submitted"> 
+        The name should be at least 3 characters!
+    </div>
     <br>
     <label>Description:</label>
     <input type="text" formControlName="description">
     <br>
     <label>Form Status: {{ todoForm.status }}</label>
     <br>
-    <button type="submit" [disabled]="!todoForm.valid">Submit</button>
+    <button type="submit" 
+    >Submit</button>
 </form>

@@ -1,13 +1,19 @@
-<ul>
-    <li *ngFor="let todo of todos; let i = index">
-        <div>
-            <input  type="checkbox" [(ngModel)]="todo.done" (change)="checkingTodo(i)" >
-            <a routerLink="/detail/{{todo.date}}"><strong>{{todo.title}}</strong></a>
-            <br>{{todo.description}}<br>
-            <small>{{ todo.date | date: 'medium' }}</small>
-            <button type="button" (click)="deleteTodo(todo)">x</button>
-        </div>
-    </li>
-</ul>
-
-<app-todo-one></app-todo-one>
+<div class="list">
+    <ul>
+        <li *ngFor="let todo of todos; let index = index">
+            <input  type="checkbox" (click)="checkingTodo(index)" [(ngModel)]="todo.done">
+            <div>
+                <a routerLink="/detail/{{todo.date}}" ><strong>{{todo.title}}</strong></a>
+            </div>    
+            <div class="desc">{{todo.description}}</div>
+            <div>
+                <small>{{ todo.date | date: 'medium' }}</small>
+                <button type="button" (click)="deleteTodo(todo)">x</button>
+            </div>
+        </li>
+    </ul>
+</div>
+<br>
+<app-todo-form></app-todo-form>
+<br>
+<app-form-array></app-form-array>

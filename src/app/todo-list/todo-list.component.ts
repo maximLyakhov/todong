@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Todo } from '../todo';
 import { TodoService } from '../todo.service';
 
 @Component({
@@ -16,18 +17,16 @@ export class TodoListComponent implements OnInit {
     this.todos = this.todoService.getTodos()
   }
   
-  pushTodo (val) {
+  pushTodo (val: Todo) {
     this.todoService.pushTodo(val)
   }
   
-  checkingTodo(i) {
-    console.log(i);
-    this.todoService.todos[i].done = !this.todoService.todos[i].done
-    this.todoService.localStorageSetItem()
-  }
-
-  deleteTodo (val) {
+  deleteTodo (val: Todo) {
     this.todoService.deleteTodo(val)
   }
-}
 
+  checkingTodo(index: number) {
+    this.todoService.todos[index].done = !this.todoService.todos[index].done
+    this.todoService.localStorageSetItem()
+  }
+}

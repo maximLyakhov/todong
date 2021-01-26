@@ -7,14 +7,16 @@ import { AppComponent } from './app.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
 import { TodoService } from './todo.service';
-import { TodoOneComponent } from './todo-one/todo-one.component';
+import { TodoDetailComponent } from './todo-detail/todo-detail.component';
+import { FormArrayComponent } from './form-array/form-array.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     TodoFormComponent,
-    TodoOneComponent,
+    TodoDetailComponent,
+    FormArrayComponent,
   ],
   imports: [
     BrowserModule,
