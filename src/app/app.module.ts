@@ -9,12 +9,13 @@ import { BackService } from './shared/back.service';
 import { TodoDetailsComponent } from './todo-details/todo-details.component';
 import { RouterModule, Routes } from "@angular/router";
 import { LoginPageComponent } from './login-page/login-page.component';
+import { LoginGuard } from './shared/login.guard';
 
 const routes: Routes = [
   { path: '', component: AppComponent },
-  { path: 'todolist', component: TodoListComponent},
+  { path: 'todolist', canActivate: [LoginGuard], component: TodoListComponent},
   { path: 'details/:date', component: TodoDetailsComponent },
-  { path: 'new', component: TodoFormComponent},
+  { path: 'new', canActivate: [LoginGuard], component: TodoFormComponent},
   { path: 'login', component: LoginPageComponent}
 ]
 

@@ -10,7 +10,7 @@ import { BackService } from '../shared/back.service';
 export class LoginPageComponent implements OnInit {
 
   loginForm = this.fb.group({
-    email: 'kek@kok.com',
+    email: 'kek@kok.co',
     password: [''],
   })
 
