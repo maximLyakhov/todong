@@ -1,4 +1,4 @@
-export interface Prototodo {
+export interface Todo {
     title: string,
     description: string,
 }

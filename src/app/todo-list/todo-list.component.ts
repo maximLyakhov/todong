@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Todo } from '../todo';
-import { TodoService } from '../todo.service';
+import { Todo } from '../shared/todo';
+import { BackService } from '../shared/back.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,24 +10,26 @@ import { TodoService } from '../todo.service';
 })
 export class TodoListComponent implements OnInit {
 
-  todos = [];
+  todos;
 
-  constructor(private todoService: TodoService) {}
+  constructor(private backService: BackService,
+    private router: Router) {}
 
   ngOnInit(): void {
-    this.todos = this.todoService.getTodos()
+    this.backService.getTodos().subscribe(res => {
+        this.todos = res;
+    })
   }
-  
+
   pushTodo (val: Todo) {
-    this.todoService.pushTodo(val)
-  }
-  
-  deleteTodo (val: Todo) {
-    this.todoService.deleteTodo(val)
+    this.backService.postTodo(val).subscribe(() => {
+
+    })
   }
 
   checkingTodo(index: number) {
-    this.todoService.todos[index].done = !this.todoService.todos[index].done
-    this.todoService.localStorageSetItem()
+    this.backService.getTodos().subscribe(res =>{
+      this.todos[index].done = res
+    })
   }
 }

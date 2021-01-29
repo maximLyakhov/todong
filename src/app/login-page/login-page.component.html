@@ -1,0 +1,11 @@
+<h1>Login Page</h1>
+<br>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <label>Email: </label>
+    <input type="email" formControlName="email" required autocomplete>
+    <br>
+    <label>Password: </label>
+    <input type="password" formControlName="password" required autocomplete >
+    <br>
+    <button type="submit">Login</button>
+</form>

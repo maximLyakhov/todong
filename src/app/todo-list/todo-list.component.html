@@ -1,19 +1,13 @@
 <div class="list">
     <ul>
         <li *ngFor="let todo of todos; let index = index">
-            <input  type="checkbox" (click)="checkingTodo(index)" [(ngModel)]="todo.done">
-            <div>
-                <a routerLink="/detail/{{todo.date}}" ><strong>{{todo.title}}</strong></a>
-            </div>    
-            <div class="desc">{{todo.description}}</div>
-            <div>
-                <small>{{ todo.date | date: 'medium' }}</small>
-                <button type="button" (click)="deleteTodo(todo)">x</button>
-            </div>
+            <small class="date">{{todo.date | date: 'medium'}}</small>
+            <button type="button">&#9249;</button>
+            <nav>
+                <a routerLink="/details/{{todo.date}}">{{todo.title}}</a>
+            </nav>
+            {{todo.description}}
         </li>
     </ul>
 </div>
 <br>
-<app-todo-form></app-todo-form>
-<br>
-<app-form-array></app-form-array>

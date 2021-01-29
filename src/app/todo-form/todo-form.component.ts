@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { TodoService } from '../todo.service';
+import { BackService } from '../shared/back.service';
 
 @Component({
   selector: 'app-todo-form',
@@ -16,18 +16,21 @@ export class TodoFormComponent implements OnInit{
   {updateOn: 'submit'}
   )
 
-  constructor(private fb: FormBuilder, private todoService: TodoService) {}
+  constructor(
+    private fb: FormBuilder, 
+    private backService: BackService) {}
 
   ngOnInit(){
-    this.todoForm.valueChanges.subscribe(r => {
-      console.log( this.todoForm);
+    this.todoForm.valueChanges.subscribe(res => {
+      console.log(this.todoForm.value)
     })
   }
 
   onSubmit(form: FormGroup) {
     if (this.todoForm.valid) {
-      this.todoService.pushTodo(form.value)
-      form.reset()
+      this.backService.postTodo(form.value).subscribe(res => {
+      })
     }
+    form.reset()
   }
 }
