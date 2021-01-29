@@ -28,6 +28,8 @@ export class LoginPageComponent implements OnInit {
       let auth = 'true'
       localStorage.setItem('auth', auth)
     } else {
+      let auth = 'false'
+      localStorage.setItem('auth', auth)
       alert('no-no-no!')
     }
   }
