@@ -7,17 +7,20 @@ import { TodoFormComponent } from './todo-form/todo-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BackService } from './shared/back.service';
 import { TodoDetailsComponent } from './todo-details/todo-details.component';
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { LoginGuard } from './shared/login.guard';
+import { DashboardComponent } from './login-page/dashboard/dashboard.component';
+import { MaterialModule } from './shared/material.module';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
-  { path: 'todolist', canActivate: [LoginGuard], component: TodoListComponent},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'todolist', canActivate: [LoginGuard], component: TodoListComponent },
+  { path: 'new', canActivate: [LoginGuard], component: TodoFormComponent },
   { path: 'details/:date', component: TodoDetailsComponent },
-  { path: 'new', canActivate: [LoginGuard], component: TodoFormComponent},
-  { path: 'login', component: LoginPageComponent}
-]
+  { path: 'login', component: LoginPageComponent },
+  { path: 'dashboard', component: DashboardComponent },
+];
 
 @NgModule({
   declarations: [
@@ -26,15 +29,17 @@ const routes: Routes = [
     TodoFormComponent,
     TodoDetailsComponent,
     LoginPageComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    MaterialModule,
   ],
   providers: [FormBuilder, BackService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

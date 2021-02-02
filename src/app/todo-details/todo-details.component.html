@@ -1,9 +1,11 @@
-<div *ngIf="currentItem">
-    <h3>{{currentItem.title}}</h3>
-    <br>
-    {{currentItem.description}}
-    <br>
-    {{currentItem.date | date:'medium'}}
-    <br>
-    <input type="checkbox" [(ngModel)]="currentItem.done">
+<div class="container">
+  <div class="left"></div>
+  <div class="center" *ngIf="currentItem">
+    <mat-card-title>{{ currentItem.title }}</mat-card-title>
+    <br />
+    <mat-card-content>{{ currentItem.description }}</mat-card-content>
+    <br />
+    {{ currentItem.date | date: "medium" }}
+  </div>
+  <div class="right"></div>
 </div>

@@ -1,11 +1,23 @@
-<h1>Login Page</h1>
-<br>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-    <label>Email: </label>
-    <input type="email" formControlName="email" required autocomplete>
-    <br>
-    <label>Password: </label>
-    <input type="password" formControlName="password" required autocomplete >
-    <br>
-    <button type="submit">Login</button>
-</form>
+<div class="container">
+  <div class="left"></div>
+  <div *ngIf="!this.authStatus" class="center">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+      <label>Email: </label>
+      <br />
+      <input type="email" formControlName="email" required autocomplete />
+      <br />
+      <label>Password: </label>
+      <br />
+      <input type="password" formControlName="password" required autocomplete />
+      <br />
+      <button mat-raised-button type="submit">Login</button>
+    </form>
+  </div>
+  <div *ngIf="this.authStatus" class="center">
+    <app-dashboard></app-dashboard>
+    <button mat-raised-button color="accent" (click)="this.loggingOut()">
+      Logout
+    </button>
+  </div>
+  <div class="right"></div>
+</div>

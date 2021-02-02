@@ -5,19 +5,20 @@ import { BackService } from '../shared/back.service';
 @Component({
   selector: 'app-todo-details',
   templateUrl: './todo-details.component.html',
-  styleUrls: ['./todo-details.component.scss']
+  styleUrls: ['./todo-details.component.scss'],
 })
 export class TodoDetailsComponent implements OnInit {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private backService: BackService
+  ) {}
 
-  constructor(private activatedRoute: ActivatedRoute,
-    private backService: BackService) {}
-  
   currentItem;
 
   ngOnInit(): void {
-    let id = this.activatedRoute.snapshot.paramMap.get('date')
-    this.backService.getSingleTodo(id).subscribe(res => {
-      this.currentItem = res
-    })
+    let id = this.activatedRoute.snapshot.paramMap.get('date');
+    this.backService.getSingleTodo(id).subscribe((res) => {
+      this.currentItem = res;
+    });
   }
 }
