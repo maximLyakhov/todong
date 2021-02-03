@@ -30,11 +30,11 @@ export class BackService {
     return this.http.delete(`${this.url}/details/${date}`);
   }
 
-  loginSend(loginJson: Login) {
-    return this.http
-      .post('http://localhost:3000/login', loginJson)
-      .subscribe((res) => {
-        this.authApproved = res;
-      });
+  loginSend(login: Login) {
+    return this.http.post('http://localhost:3000/login', login);
+  }
+
+  registrationSend(reg) {
+    return this.http.post('http://localhost:3000/registration', reg);
   }
 }

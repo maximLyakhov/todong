@@ -10,8 +10,10 @@ import { TodoDetailsComponent } from './todo-details/todo-details.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { LoginGuard } from './shared/login.guard';
-import { DashboardComponent } from './login-page/dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { MaterialModule } from './shared/material.module';
+import { RegistrationComponent } from './registration/registration.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -30,8 +32,10 @@ const routes: Routes = [
     TodoDetailsComponent,
     LoginPageComponent,
     DashboardComponent,
+    RegistrationComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,

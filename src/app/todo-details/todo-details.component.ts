@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackService } from '../shared/back.service';
+import { Todo } from '../shared/interfaces/todo';
 
 @Component({
   selector: 'app-todo-details',

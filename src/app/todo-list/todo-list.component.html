@@ -7,7 +7,6 @@
           <a routerLink="/details/{{ todo.date }}">{{ todo.title }}</a>
         </div>
         <ng-template #elseBlock>{{ todo.title }}</ng-template>
-        <small class="date">{{ todo.date | date: "medium" }}</small>
         <mat-icon
           mat-stroked-button
           color="accent"
@@ -20,3 +19,5 @@
   </div>
   <div class="right"></div>
 </div>
+<br />
+<app-todo-form></app-todo-form>

@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="left"></div>
+  <div class="center">
+    <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
+      <label for="name">Your Name: </label>
+      <br />
+      <input
+        id="name"
+        type="name"
+        formControlName="name"
+        required
+        autocomplete
+      />
+      <br />
+      <label for="email">Your Email: </label>
+      <br />
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        required
+        autocomplete
+      />
+      <br />
+      <label for="password">New Password: </label>
+      <br />
+      <input
+        id="password"
+        type="password"
+        formControlName="password"
+        required
+        autocomplete
+      />
+      <br />
+      <label for="consent"
+        >Register me here, <br />
+        I consent!</label
+      >
+      <input id="consent" type="checkbox" formControlName="consent" required />
+      <br />
+      <button mat-raised-button type="submit">Register</button>
+    </form>
+  </div>
+  <div class="right"></div>
+</div>

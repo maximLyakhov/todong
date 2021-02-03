@@ -24,8 +24,13 @@ export class TodoFormComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     if (this.todoForm.valid) {
-      this.backService.postTodo(form.value).subscribe((res) => {});
+      let preparedTodo = {
+        ...form.value,
+        date: Date.now(),
+        done: false,
+      };
+      this.backService.postTodo(preparedTodo).subscribe(() => {});
+      form.reset();
     }
-    form.reset();
   }
 }

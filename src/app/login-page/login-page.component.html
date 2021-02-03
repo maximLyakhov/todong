@@ -1,17 +1,27 @@
 <div class="container">
   <div class="left"></div>
   <div *ngIf="!this.authStatus" class="center">
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-      <label>Email: </label>
-      <br />
-      <input type="email" formControlName="email" required autocomplete />
-      <br />
-      <label>Password: </label>
-      <br />
-      <input type="password" formControlName="password" required autocomplete />
-      <br />
-      <button mat-raised-button type="submit">Login</button>
-    </form>
+    <div class="innerleft">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+        <label>Email: </label>
+        <br />
+        <input type="email" formControlName="email" required autocomplete />
+        <br />
+        <label>Password: </label>
+        <br />
+        <input
+          type="password"
+          formControlName="password"
+          required
+          autocomplete
+        />
+        <br />
+        <button mat-raised-button type="submit">Login</button>
+      </form>
+    </div>
+    <div class="innerright">
+      <app-registration></app-registration>
+    </div>
   </div>
   <div *ngIf="this.authStatus" class="center">
     <app-dashboard></app-dashboard>

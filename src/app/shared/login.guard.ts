@@ -24,9 +24,7 @@ export class LoginGuard implements CanActivate {
     | boolean
     | UrlTree {
     let authStatus = JSON.parse(localStorage.getItem('auth'));
-    if (authStatus === true) {
-      // this.router.navigateByUrl('/login')
-      return true;
-    } else return false;
+    if (authStatus === true) return true;
+    else return false;
   }
 }

@@ -1,7 +1,17 @@
-<mat-toolbar class="nav" color="primary">
-  <a class="link" color="basic" routerLink="/login">Login Page</a>
-  <a class="link" color="accent" routerLink="/todolist">Tasks</a>
-  <a class="link" color="accent" routerLink="/new">New Task</a>
-</mat-toolbar>
-<br />
-<router-outlet></router-outlet>
+<div class="mat-app-background">
+  <mat-toolbar class="nav" color="primary">
+    <a class="link" color="basic" routerLink="/login">
+      <mat-icon>home</mat-icon>
+    </a>
+    <a class="link" color="accent" routerLink="/todolist">
+      <mat-icon>notes</mat-icon>
+    </a>
+    <a class="link" color="accent" routerLink="/new">
+      <mat-icon>mode</mat-icon>
+    </a>
+  </mat-toolbar>
+  <br />
+  <router-outlet></router-outlet>
+</div>
+
+<!-- <mat-toolbar class="nav" color="primary"> -->
