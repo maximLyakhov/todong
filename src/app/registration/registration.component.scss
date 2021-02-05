@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.center {
+  ::ng-deep {
+    flex-direction: column;
+  }
+}
+
+.error {
+  color: red;
+}
+
+form {
+  .ng-invalid {
+    color: red;
+  }
+}

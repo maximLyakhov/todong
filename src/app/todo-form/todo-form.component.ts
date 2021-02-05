@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { BackService } from '../shared/back.service';
 
 @Component({
@@ -16,10 +17,14 @@ export class TodoFormComponent implements OnInit {
     { updateOn: 'submit' }
   );
 
-  constructor(private fb: FormBuilder, private backService: BackService) {}
+  constructor(
+    private fb: FormBuilder,
+    private bs: BackService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.todoForm.valueChanges.subscribe((res) => {});
+    this.todoForm.valueChanges.subscribe(() => {});
   }
 
   onSubmit(form: FormGroup) {
@@ -28,9 +33,11 @@ export class TodoFormComponent implements OnInit {
         ...form.value,
         date: Date.now(),
         done: false,
+        userid: localStorage.getItem('userid'),
       };
-      this.backService.postTodo(preparedTodo).subscribe(() => {});
+      this.bs.postTodo(preparedTodo).subscribe(() => {});
       form.reset();
+      this.router.navigate(['todolist']);
     }
   }
 }

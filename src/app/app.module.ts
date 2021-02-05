@@ -21,7 +21,12 @@ const routes: Routes = [
   { path: 'new', canActivate: [LoginGuard], component: TodoFormComponent },
   { path: 'details/:date', component: TodoDetailsComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  {
+    path: 'dashboard',
+    canActivate: [LoginGuard],
+    component: DashboardComponent,
+  },
+  { path: 'registration', component: RegistrationComponent },
 ];
 
 @NgModule({

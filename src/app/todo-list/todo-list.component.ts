@@ -11,19 +11,21 @@ import { Router } from '@angular/router';
 export class TodoListComponent implements OnInit {
   todos: Todo[];
 
-  constructor(private backService: BackService, private router: Router) {}
+  constructor(private bs: BackService, private router: Router) {}
 
   ngOnInit(): void {
-    this.backService.getTodos().subscribe((res) => {
+    this.bs.getTodos().subscribe((res) => {
       this.todos = res;
     });
   }
 
   deleteTodo(date) {
-    this.backService.deleteTodo(date).subscribe((res: Todo) => {
+    this.bs.deleteTodo(date).subscribe((res: Todo) => {
       if (res.date === date) {
-        let markedForD = this.todos.findIndex((res) => res.date === date);
-        this.todos.splice(markedForD, 1);
+        this.todos.splice(
+          this.todos.findIndex((res) => res.date === date),
+          1
+        );
       }
     });
   }

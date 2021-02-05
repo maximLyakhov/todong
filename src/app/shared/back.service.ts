@@ -10,7 +10,9 @@ import { Todo } from './interfaces/todo';
 export class BackService {
   url = 'http://localhost:3000/todos';
 
-  authApproved;
+  currentUser;
+
+  public authStatus = JSON.parse(localStorage.getItem('auth'));
 
   constructor(private http: HttpClient) {}
 

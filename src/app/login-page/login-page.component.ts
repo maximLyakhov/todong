@@ -14,30 +14,27 @@ export class LoginPageComponent implements OnInit {
     password: [''],
   });
 
-  authApproved;
-
-  authStatus = JSON.parse(localStorage.getItem('auth'));
-
   constructor(
     private fb: FormBuilder,
-    public backService: BackService,
+    public bs: BackService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
-
-  onSubmit(form) {
-    this.backService.loginSend(form).subscribe((res) => {
-      if (this.loginForm.valid) {
-        this.router.navigate(['todolist']);
-        localStorage.setItem('auth', 'true');
-        this.authApproved = res;
-      }
-    });
+  ngOnInit(): void {
+    if (this.bs.authStatus === false) {
+      this.router.navigate(['login']);
+    }
   }
 
-  loggingOut() {
-    this.authStatus = false;
-    localStorage.setItem('auth', this.authStatus);
+  onSubmit(form) {
+    if (this.loginForm.valid) {
+      this.bs.loginSend(form).subscribe((res) => {
+        this.bs.currentUser = res;
+        localStorage.setItem('auth', 'true');
+        localStorage.setItem('user', this.bs.currentUser.fullname);
+        localStorage.setItem('userid', this.bs.currentUser._id);
+        this.router.navigate(['todolist']);
+      });
+    }
   }
 }

@@ -21,10 +21,12 @@ export class RegistrationComponent {
 
   constructor(
     private fb: FormBuilder,
-    private bs: BackService // private router: Router
+    private bs: BackService,
+    private router: Router
   ) {}
 
   onSubmit() {
+    console.log(this.regForm.value);
     if (this.regForm.valid) {
       const fullname = this.regForm.get('name').value;
       const email = this.regForm.get('email').value;
@@ -35,12 +37,11 @@ export class RegistrationComponent {
         password,
       };
       return this.bs.registrationSend(preparedRegSend).subscribe((res) => {
-        if (res === true) {
-          // this.router.navigate(['todolist']);
-        }
+        if (res.hasOwnProperty('fullname')) {
+          this.regForm.reset();
+          alert('You successfully registered! Please login!');
+        } else alert('You passed incorrect credentials!');
       });
-    } else {
-      alert('You passed incorrect credentials!');
     }
   }
 }

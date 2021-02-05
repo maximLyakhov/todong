@@ -1,45 +1,65 @@
 <div class="container">
   <div class="left"></div>
   <div class="center">
-    <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
-      <label for="name">Your Name: </label>
+    <form [formGroup]="regForm" #form="ngForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label for="name">Your Name: </mat-label>
+        <input
+          matInput
+          id="name"
+          type="name"
+          formControlName="name"
+          required
+          autocomplete
+        />
+      </mat-form-field>
+
       <br />
-      <input
-        id="name"
-        type="name"
-        formControlName="name"
+
+      <mat-form-field appearance="fill">
+        <mat-label for="email">Your Email: </mat-label>
+        <input
+          matInput
+          id="email"
+          type="email"
+          formControlName="email"
+          required
+          autocomplete
+        />
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field appearance="fill">
+        <mat-label for="password">New Password: </mat-label>
+        <input
+          matInput
+          id="password"
+          type="password"
+          formControlName="password"
+          required
+          autocomplete
+        />
+      </mat-form-field>
+
+      <br />
+
+      <mat-checkbox
+        matInput
+        id="consent"
+        type="checkbox"
+        formControlName="consent"
         required
-        autocomplete
-      />
-      <br />
-      <label for="email">Your Email: </label>
-      <br />
-      <input
-        id="email"
-        type="email"
-        formControlName="email"
-        required
-        autocomplete
-      />
-      <br />
-      <label for="password">New Password: </label>
-      <br />
-      <input
-        id="password"
-        type="password"
-        formControlName="password"
-        required
-        autocomplete
-      />
-      <br />
-      <label for="consent"
-        >Register me here, <br />
-        I consent!</label
+        >Register me here,
+        <br />
+        I consent!</mat-checkbox
       >
-      <input id="consent" type="checkbox" formControlName="consent" required />
+
       <br />
+
       <button mat-raised-button type="submit">Register</button>
     </form>
+    <a routerLink="/login">Or proceed to the login page...</a>
   </div>
   <div class="right"></div>
 </div>

@@ -1,6 +1,7 @@
 <div class="container">
   <div class="left"></div>
   <div class="list">
+    <h1>Tasks</h1>
     <mat-list>
       <mat-list-item class="item" *ngFor="let todo of todos; let index = index">
         <div *ngIf="todo.description; else elseBlock">
@@ -19,5 +20,3 @@
   </div>
   <div class="right"></div>
 </div>
-<br />
-<app-todo-form></app-todo-form>

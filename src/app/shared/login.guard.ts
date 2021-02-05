@@ -1,3 +1,4 @@
+import { JsonpClientBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   CanActivate,
@@ -13,7 +14,7 @@ import { BackService } from './back.service';
   providedIn: 'root',
 })
 export class LoginGuard implements CanActivate {
-  constructor(private backService: BackService, private router: Router) {}
+  constructor(private bs: BackService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -23,8 +24,14 @@ export class LoginGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    let authStatus = JSON.parse(localStorage.getItem('auth'));
-    if (authStatus === true) return true;
-    else return false;
+    if (this.bs.currentUser !== undefined) {
+      console.log('hmm');
+
+      return true;
+    } else {
+      this.router.navigate(['login']);
+      localStorage.setItem('auth', JSON.stringify(false));
+      return false;
+    }
   }
 }

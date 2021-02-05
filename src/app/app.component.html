@@ -1,8 +1,9 @@
 <div class="mat-app-background">
   <mat-toolbar class="nav" color="primary">
-    <a class="link" color="basic" routerLink="/login">
+    <a class="link" (click)="navigateTo()">
       <mat-icon>home</mat-icon>
     </a>
+
     <a class="link" color="accent" routerLink="/todolist">
       <mat-icon>notes</mat-icon>
     </a>
@@ -13,5 +14,3 @@
   <br />
   <router-outlet></router-outlet>
 </div>
-
-<!-- <mat-toolbar class="nav" color="primary"> -->
