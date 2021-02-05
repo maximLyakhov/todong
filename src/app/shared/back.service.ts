@@ -24,6 +24,10 @@ export class BackService {
     return this.http.post<Todo>(this.url, todo);
   }
 
+  patchTodo(todo) {
+    return this.http.patch<Todo>(this.url, todo);
+  }
+
   getSingleTodo(date) {
     return this.http.get(`${this.url}/details/${date}`);
   }

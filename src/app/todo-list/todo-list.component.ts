@@ -29,4 +29,8 @@ export class TodoListComponent implements OnInit {
       }
     });
   }
+
+  checkTodo(todo) {
+    this.bs.patchTodo(todo).subscribe(() => {});
+  }
 }

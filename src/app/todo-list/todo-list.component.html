@@ -4,17 +4,21 @@
     <h1>Tasks</h1>
     <mat-list>
       <mat-list-item class="item" *ngFor="let todo of todos; let index = index">
+        <mat-checkbox (click)="checkTodo(todo)" [(ngModel)]="todo.done">
+        </mat-checkbox>
         <div *ngIf="todo.description; else elseBlock">
           <a routerLink="/details/{{ todo.date }}">{{ todo.title }}</a>
         </div>
         <ng-template #elseBlock>{{ todo.title }}</ng-template>
-        <mat-icon
-          mat-stroked-button
-          color="accent"
-          type="button"
-          (click)="deleteTodo(todo.date)"
-          >delete</mat-icon
-        >
+        <div>
+          <mat-icon
+            mat-stroked-button
+            color="accent"
+            type="button"
+            (click)="deleteTodo(todo.date)"
+            >delete</mat-icon
+          >
+        </div>
       </mat-list-item>
     </mat-list>
   </div>
