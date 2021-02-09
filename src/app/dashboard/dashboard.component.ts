@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
     localStorage.setItem('auth', this.bs.authStatus);
     localStorage.removeItem('user');
     localStorage.removeItem('userid');
+    localStorage.removeItem('currentToken');
     this.router.navigate(['login']);
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BackService } from '../shared/back.service';
+import { LoginInfo } from '../shared/interfaces/login.info.dto';
 
 @Component({
   selector: 'app-login-page',
@@ -28,11 +29,13 @@ export class LoginPageComponent implements OnInit {
 
   onSubmit(form) {
     if (this.loginForm.valid) {
-      this.bs.loginSend(form).subscribe((res) => {
-        this.bs.currentUser = res;
+      this.bs.loginSend(form).subscribe((res: LoginInfo) => {
+        this.bs.currentToken = res.user.token;
+        this.bs.currentUser = res.user._id;
         localStorage.setItem('auth', 'true');
-        localStorage.setItem('user', this.bs.currentUser.fullname);
-        localStorage.setItem('userid', this.bs.currentUser._id);
+        localStorage.setItem('user', res.user.fullname);
+        localStorage.setItem('userid', res.user._id);
+        localStorage.setItem('currentToken', res.user.token);
         this.router.navigate(['todolist']);
       });
     }

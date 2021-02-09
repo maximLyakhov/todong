@@ -12,6 +12,8 @@ export class BackService {
 
   currentUser;
 
+  currentToken: string;
+
   public authStatus = JSON.parse(localStorage.getItem('auth'));
 
   constructor(private http: HttpClient) {}
@@ -37,10 +39,10 @@ export class BackService {
   }
 
   loginSend(login: Login) {
-    return this.http.post('http://localhost:3000/login', login);
+    return this.http.post('http://localhost:3000/auth/login', login);
   }
 
   registrationSend(reg) {
-    return this.http.post('http://localhost:3000/registration', reg);
+    return this.http.post('http://localhost:3000/auth/registration', reg);
   }
 }

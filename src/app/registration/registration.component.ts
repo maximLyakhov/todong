@@ -26,7 +26,6 @@ export class RegistrationComponent {
   ) {}
 
   onSubmit() {
-    console.log(this.regForm.value);
     if (this.regForm.valid) {
       const fullname = this.regForm.get('name').value;
       const email = this.regForm.get('email').value;

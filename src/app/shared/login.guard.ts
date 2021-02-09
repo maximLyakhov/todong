@@ -1,4 +1,3 @@
-import { JsonpClientBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
   CanActivate,
@@ -24,9 +23,7 @@ export class LoginGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.bs.currentUser !== undefined) {
-      console.log('hmm');
-
+    if (localStorage.getItem('userid') !== undefined) {
       return true;
     } else {
       this.router.navigate(['login']);
