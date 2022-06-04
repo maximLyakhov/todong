@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements OnInit {
-  todos: Todo[];
+  todos: Todo[] = [];
 
   constructor(private bs: BackService, private router: Router) {}
 
@@ -19,7 +19,7 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  deleteTodo(date) {
+  deleteTodo(date: number) {
     this.bs.deleteTodo(date).subscribe((res: Todo) => {
       if (res.date === date) {
         this.todos.splice(
@@ -30,7 +30,7 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  checkTodo(todo) {
+  checkTodo(todo: Todo) {
     this.bs.patchTodo(todo).subscribe(() => {});
   }
 }

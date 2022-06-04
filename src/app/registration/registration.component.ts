@@ -25,17 +25,18 @@ export class RegistrationComponent {
     private router: Router
   ) {}
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.regForm.valid) {
-      const fullname = this.regForm.get('name').value;
-      const email = this.regForm.get('email').value;
-      const password = this.regForm.get('password').value;
+      const fullname = this.regForm.get('name')?.value;
+      const email = this.regForm.get('email')?.value;
+      const password = this.regForm.get('password')?.value;
       const preparedRegSend = {
         fullname,
         email,
         password,
       };
-      return this.bs.registrationSend(preparedRegSend).subscribe((res) => {
+
+      this.bs.registrationSend(preparedRegSend).subscribe((res) => {
         if (res.hasOwnProperty('fullname')) {
           this.regForm.reset();
           alert('You successfully registered! Please login!');

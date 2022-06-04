@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BackService } from '../shared/back.service';
+import { Todo } from '../shared/interfaces/todo';
 
 @Component({
   selector: 'app-todo-details',
@@ -13,10 +14,10 @@ export class TodoDetailsComponent implements OnInit {
     private bs: BackService
   ) {}
 
-  currentItem;
+  currentItem: Todo | undefined;
 
   ngOnInit(): void {
-    let id = this.activatedRoute.snapshot.paramMap.get('date');
+    let id = Number(this.activatedRoute.snapshot.paramMap.get('date'));
     this.bs.getSingleTodo(id).subscribe((res) => {
       this.currentItem = res;
     });

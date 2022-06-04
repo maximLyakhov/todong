@@ -27,7 +27,7 @@ export class LoginPageComponent implements OnInit {
     }
   }
 
-  onSubmit(form) {
+  onSubmit(form: {email: string, password: string}) {
     if (this.loginForm.valid) {
       this.bs.loginSend(form).subscribe((res: LoginInfo) => {
         this.bs.currentToken = res.user.token;

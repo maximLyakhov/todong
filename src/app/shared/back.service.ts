@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Login } from './interfaces/login';
+import { LoginInfo } from './interfaces/login.info.dto';
 import { Todo } from './interfaces/todo';
 
 @Injectable({
@@ -10,11 +11,13 @@ import { Todo } from './interfaces/todo';
 export class BackService {
   url = 'http://localhost:3000/todos';
 
-  currentUser;
+  currentUser: string | undefined;
 
-  currentToken: string;
+  currentToken: string | undefined;
 
-  public authStatus = JSON.parse(localStorage.getItem('auth'));
+  public authStatus = localStorage.getItem('auth')
+    ? JSON.parse(localStorage.getItem('auth')!)
+    : null;
 
   constructor(private http: HttpClient) {}
 
@@ -26,23 +29,23 @@ export class BackService {
     return this.http.post<Todo>(this.url, todo);
   }
 
-  patchTodo(todo) {
+  patchTodo(todo: Todo) {
     return this.http.patch<Todo>(this.url, todo);
   }
 
-  getSingleTodo(date) {
-    return this.http.get(`${this.url}/details/${date}`);
+  getSingleTodo(date: number): Observable<Todo> {
+    return this.http.get<Todo>(`${this.url}/details/${date}`);
   }
 
-  deleteTodo(date) {
-    return this.http.delete(`${this.url}/details/${date}`);
+  deleteTodo(date: number) {
+    return this.http.delete<Todo>(`${this.url}/details/${date}`);
   }
 
-  loginSend(login: Login) {
-    return this.http.post('http://localhost:3000/auth/login', login);
+  loginSend(login: Login): Observable<LoginInfo> {
+    return this.http.post<LoginInfo>('http://localhost:3000/auth/login', login);
   }
 
-  registrationSend(reg) {
+  registrationSend(reg: { fullname: string; email: string; password: string }) {
     return this.http.post('http://localhost:3000/auth/registration', reg);
   }
 }

@@ -23,13 +23,13 @@
       <button mat-raised-button type="submit" color="accent">Submit</button>
       <div
         class="error"
-        *ngIf="todoForm.get('title').hasError('required') && form.submitted"
+        *ngIf="todoForm.get('title')?.hasError('required') && form.submitted"
       >
         Title field is required!
       </div>
       <div
         class="error"
-        *ngIf="todoForm.get('title').hasError('minlength') && form.submitted"
+        *ngIf="todoForm.get('title')?.hasError('minlength') && form.submitted"
       >
         The title should be
         <br />

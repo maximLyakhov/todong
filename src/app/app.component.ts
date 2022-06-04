@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   constructor(private router: Router) {}
   navigateTo() {
-    const isLogin = JSON.parse(localStorage.getItem('auth'));
+    const isLogin = localStorage.getItem('auth') ? JSON.parse(localStorage.getItem('auth')!) : null;
     if (isLogin) {
       this.router.navigate(['dashboard']);
     } else {

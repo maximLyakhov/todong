@@ -9,7 +9,7 @@ import { BackService } from '../shared/back.service';
 })
 export class DashboardComponent implements OnInit {
   date = new Date().toLocaleDateString('en-us');
-  fullname: string;
+  fullname: string | null = null;
 
   constructor(private bs: BackService, private router: Router) {}
   ngOnInit() {
